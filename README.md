@@ -9,7 +9,7 @@ This is also called public key cryptography, because one of the keys can be give
 ## Algorithm steps
 ### 1. Keys generation
 1. Choose two different large random prime numbers *__p__* and *__q__*.
-2. Calculate *__n = p.q__*.  
+2. Calculate *__n = pq__*.  
    *__n__* is the modulus for the public key and the private keys.
 3. Calculate the Euler totient of *__n__*: *__phi(n) = (p-1)(q-1)__*
 4. Choose an integer *__e__* such that *__1 < e < phi(n)__*, and *__e__* is co-prime to *__phi(n)__*.  
@@ -18,13 +18,11 @@ This is also called public key cryptography, because one of the keys can be give
    *__d__* is kept as the private key exponent.
 
 ### 2. Encryption
-To encrypt a message *__m__*:
-
+To encrypt a message *__m__*:  
 *__c = pow(m, e) mod n__*
 
 ### 3. Decryption
-To decrypt the ciphered message *__c__*:
-
+To decrypt the ciphered message *__c__*:  
 *__m = pow(c, d) mod n__*
 
 ## How to use
