@@ -13,11 +13,11 @@ encryption_time = []
 brute_force_attack_time = []
 
 #
-# Compute encryption time for different key lengthes
+# Compute encryption time for different key lengths
 #
 for l in range(2, 100):
     # Log
-    print('Enc > Running at length:', l)
+    print('Encryption > Running at length:', l)
 
     # Initialize values
     enc_time = 0
@@ -32,9 +32,9 @@ for l in range(2, 100):
         mes = random.randint(1, n - 1)
 
         # Encrypt
-        tic = time.time()
+        tic = time.clock()
         enc = rsa.encrypt(mes)
-        toc = time.time()
+        toc = time.clock()
         enc_time += (toc - tic) * 1000
 
         # Decrypt
@@ -65,11 +65,11 @@ for l in range(2, 100):
 
 
 #
-# Compute brute force attack time for different key lengthes
+# Compute brute force attack time for different key lengths
 #
 for l in range(2, 20):
     # Log
-    print('BF > Running at length:', l)
+    print('BruteForce > Running at length:', l)
 
     # Initialize values
     bf_time = 0
