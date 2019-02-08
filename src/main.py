@@ -80,7 +80,7 @@ for l in range(2, 20):
         rsa = RSA()
         n, e, d = rsa.generate_key(l)
 		
-	 # Generate random message
+	# Generate random message
         mes = random.randint(1, n - 1)
 
         # Encrypt
