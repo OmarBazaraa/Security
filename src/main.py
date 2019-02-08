@@ -79,13 +79,19 @@ for l in range(2, 20):
         # Generate random RSA keys
         rsa = RSA()
         n, e, d = rsa.generate_key(l)
+		
+		# Generate random message
+        mes = random.randint(1, n - 1)
 
+        # Encrypt
+        enc = rsa.encrypt(mes)
+		
         # Brute force attack
         tic = time.time()
-        d_ = attacks.brute_force(rsa)
+        mes_ = attacks.brute_force(enc, rsa)
         toc = time.time()
         bf_time += (toc - tic) * 1000
-        assert (d == d_)
+        assert (mes == mes_)
 
     # Append values
     brute_force_attack_time.append(bf_time / REPLICAS)
