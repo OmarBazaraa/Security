@@ -84,7 +84,7 @@ for l in range(2, 20):
         tic = time.time()
         d_ = attacks.brute_force(rsa)
         toc = time.time()
-        bf_time += (toc - tic) * 1000
+        bf_time += (toc - tic) * 1000 * 1000
         assert (d == d_)
 
     # Append values
@@ -97,14 +97,14 @@ for l in range(2, 20):
 
 f1 = plt.figure()
 plt.title('Key Length vs Encryption Time')
-plt.xlabel('Key Length (#digits)')
+plt.xlabel('Key Length (log10(n))')
 plt.ylabel('Time (milliseconds)')
 plt.plot(key_len, encryption_time)
 
 f2 = plt.figure()
 plt.title('Key Length vs Brute Force Attack Time')
-plt.xlabel('Key Length (#digits)')
-plt.ylabel('Time (milliseconds)')
+plt.xlabel('Key Length (log10(n))')
+plt.ylabel('Time (seconds)')
 plt.plot(key_len[:len(brute_force_attack_time)], brute_force_attack_time)
 
 plt.show()
