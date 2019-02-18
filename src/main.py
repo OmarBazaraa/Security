@@ -5,7 +5,6 @@ from src import attacks
 
 from src.rsa_algorithm import RSA
 
-
 REPLICAS = 50
 
 key_len = []
@@ -63,7 +62,6 @@ for l in range(2, 100):
     key_len.append(l)
     encryption_time.append(enc_time / REPLICAS)
 
-
 #
 # Compute brute force attack time for different key lengths
 #
@@ -80,16 +78,21 @@ for l in range(2, 20):
         rsa = RSA()
         n, e, d = rsa.generate_key(l)
 
+        # Generate random message
+        mes = random.randint(1, n - 1)
+
+        # Encrypt
+        enc = rsa.encrypt(mes)
+
         # Brute force attack
         tic = time.time()
-        d_ = attacks.brute_force(rsa)
+        mes_ = attacks.brute_force(enc, rsa)
         toc = time.time()
         bf_time += (toc - tic) * 1000 * 1000
-        assert (d == d_)
+        assert (mes == mes_)
 
     # Append values
     brute_force_attack_time.append(bf_time / REPLICAS)
-
 
 #
 # Plot results
@@ -97,14 +100,14 @@ for l in range(2, 20):
 
 f1 = plt.figure()
 plt.title('Key Length vs Encryption Time')
-plt.xlabel('Key Length (log10(n))')
+plt.xlabel('Key Length (#digits)')
 plt.ylabel('Time (milliseconds)')
 plt.plot(key_len, encryption_time)
 
 f2 = plt.figure()
 plt.title('Key Length vs Brute Force Attack Time')
-plt.xlabel('Key Length (log10(n))')
-plt.ylabel('Time (seconds)')
+plt.xlabel('Key Length (#digits)')
+plt.ylabel('Time (milliseconds)')
 plt.plot(key_len[:len(brute_force_attack_time)], brute_force_attack_time)
 
 plt.show()

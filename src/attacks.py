@@ -1,7 +1,7 @@
 from src.utils import *
 
 
-def brute_force(rsa):
+def brute_force(ciphered_message, rsa):
     # Get the public key
     e, n = rsa.get_public_key()
 
@@ -20,8 +20,8 @@ def brute_force(rsa):
     s, t = extended_euclid(e, phi)
     d = ((s % phi) + phi) % phi
 
-    # Return the private key 'd'
-    return d
+    # Return the decrypted message
+    return pow(ciphered_message, d, n)
 
 
 def chosen_cipher_text(ciphered_message, rsa):
